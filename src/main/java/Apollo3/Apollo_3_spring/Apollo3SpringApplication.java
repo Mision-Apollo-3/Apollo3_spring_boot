@@ -9,6 +9,7 @@ public class Apollo3SpringApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Apollo3SpringApplication.class, args);
 		System.out.println("miguel supelano");
+		System.out.println("Juan Gasca - 1");
 	}
 
 }
