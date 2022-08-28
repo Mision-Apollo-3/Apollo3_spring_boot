@@ -5,8 +5,7 @@ import org.springframework.context.annotation.Profile;
 import java.util.Date;
 
 public class Empleado {
-
-    private long DocumentoIdentidad;
+    private long Documento_Identidad;
     private String Correo;
     private Profile Perfil;
     private String Funcion;
