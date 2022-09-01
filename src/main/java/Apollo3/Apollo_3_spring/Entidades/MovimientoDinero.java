@@ -1,6 +1,6 @@
 package Apollo3.Apollo_3_spring.Entidades;
 
-public class Movimiento_de_dinero {
+public class MovimientoDinero {
     //Instanciar atributos
     private float monto;
     private String concepto;
@@ -9,7 +9,7 @@ public class Movimiento_de_dinero {
 
     //Método Constructor
 
-    public Movimiento_de_dinero(float monto, String concepto, String usuario, String empresa) {
+    public MovimientoDinero(float monto, String concepto, String usuario, String empresa) {
         this.monto = monto;
         this.concepto = concepto;
         this.usuario = usuario;
