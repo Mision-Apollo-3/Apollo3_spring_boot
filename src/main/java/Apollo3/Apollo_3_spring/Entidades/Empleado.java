@@ -1,62 +1,54 @@
 package Apollo3.Apollo_3_spring.Entidades;
 
-import javax.persistence.*;
-import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "Empleado")
+@Table
 public class Empleado {
 
     //Creo los atributos
+
     @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_empleado;
-    @Column(length = 50, nullable = false)
-    private String nombre;
-    @Column(length = 50, nullable = false)
+    @Column(unique=true, length =30)
+    private int ID;
+    @Column(nullable=false, length=50)
     private String correo;
-    @OneToOne
-    @JoinColumn(name = "id_perfil")
-    private Perfil perfil;
-    @Column(length = 20, nullable = false)
-    private String rol;
-    @ManyToOne
-    @JoinColumn(name = "id_empresa")
-    private Empresa empresa;
-    @Column(nullable = false)
-    private Calendar creacionAt;
-    @Column
-    private Calendar actualizacionAt;
+    @Column(nullable=false, length=50)
+    private String perfil;
+    @Column(nullable=false, length=50)
+    private String funcion;
+    @Column(nullable=false, length=50)
+    private String empresa;
+    @Column(nullable=false, length=50)
+    private String transacciones;
+    @Column(nullable=false, length=50)
+    private String actualizar;
+    @Column(nullable=false, length=50)
+    private String crear;
 
-    public Empleado() {
-    }
+    //Constructor
 
-    public Empleado(long id_empleado, String nombre, String correo, Perfil perfil, String rol, Empresa empresa, Calendar creacionAt, Calendar actualizacionAt) {
-        this.id_empleado = id_empleado;
-        this.nombre = nombre;
+
+    public Empleado(int ID, String correo, String perfil, String funcion, String empresa, String transacciones, String actualizar, String crear) {
+        this.ID = ID;
         this.correo = correo;
         this.perfil = perfil;
-        this.rol = rol;
+        this.funcion = funcion;
         this.empresa = empresa;
-        this.creacionAt = creacionAt;
-        this.actualizacionAt = actualizacionAt;
+        this.transacciones = transacciones;
+        this.actualizar = actualizar;
+        this.crear = crear;
     }
 
-    public long getId_empleado() {
-        return id_empleado;
+    public String getID() {
+        return String.valueOf(ID);
     }
 
-    public void setId_empleado(long id_empleado) {
-        this.id_empleado = id_empleado;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getCorreo() {
@@ -67,57 +59,65 @@ public class Empleado {
         this.correo = correo;
     }
 
-    public Perfil getPerfil() {
+    public String getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(Perfil perfil) {
+    public void setPerfil(String perfil) {
         this.perfil = perfil;
     }
 
-    public String getRol() {
-        return rol;
+    public String getFuncion() {
+        return funcion;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setFuncion(String funcion) {
+        this.funcion = funcion;
     }
 
-    public Empresa getEmpresa() {
+    public String getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(Empresa empresa) {
+    public void setEmpresa(String empresa) {
         this.empresa = empresa;
     }
 
-    public Calendar getCreacionAt() {
-        return creacionAt;
+    public String getTransacciones() {
+        return transacciones;
     }
 
-    public void setCreacionAt(Calendar creacionAt) {
-        this.creacionAt = creacionAt;
+    public void setTransacciones(String transacciones) {
+        this.transacciones = transacciones;
     }
 
-    public Calendar getActualizacionAt() {
-        return actualizacionAt;
+    public String getActualizar() {
+        return actualizar;
     }
 
-    public void setActualizacionAt(Calendar actualizacionAt) {
-        this.actualizacionAt = actualizacionAt;
+    public void setActualizar(String actualizar) {
+        this.actualizar = actualizar;
+    }
+
+    public String getCrear() {
+        return crear;
+    }
+
+    public void setCrear(String crear) {
+        this.crear = crear;
     }
 
     @Override
     public String toString() {
         return "Empleado{" +
-                "id_empleado=" + id_empleado +
-                ", nombre='" + nombre + '\'' +
+                "ID=" + ID +
                 ", correo='" + correo + '\'' +
-                ", perfil=" + perfil +
-                ", rol='" + rol + '\'' +
-                ", empresa=" + empresa +
-                ", creacionAt=" + creacionAt +
-                ", actualizacionAt=" + actualizacionAt +
+                ", perfil='" + perfil + '\'' +
+                ", funcion='" + funcion + '\'' +
+                ", empresa='" + empresa + '\'' +
+                ", transacciones='" + transacciones + '\'' +
+                ", actualizar='" + actualizar + '\'' +
+                ", crear='" + crear + '\'' +
                 '}';
     }
 }
