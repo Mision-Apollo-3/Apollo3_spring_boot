@@ -1,22 +1,50 @@
 package Apollo3.Apollo_3_spring.Entidades;
 
+import javax.persistence.*;
+import java.util.Calendar;
+
+@Entity
+@Table(name = "Empresa")
 public class Empresa {
 
-    //Creo los atributos
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id_empresa;
+    @Column(unique = true, length = 50, nullable = false)
     private String nombre;
-    private String direccion;
-    private String telefono;
+    @Column(unique = true, length = 50, nullable = false)
     private String nit;
+    @Column(length = 20, nullable = false)
+    private String telefono;
+    @Column(length = 50, nullable = false)
+    private String direccion;
+    @Column(nullable = false)
+    private Calendar creacionAt;
+    @Column
+    private Calendar actualizacionAt;
 
-    //Constructor
-    public Empresa(String nombre, String direccion, String telefono, String nit) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.nit = nit;
+    public Empresa() {
     }
 
-    //Getter y Setter
+    public Empresa(long id_empresa, String nombre, String nit, String telefono, String direccion, Calendar creacionAt, Calendar actualizacionAt) {
+        this.id_empresa = id_empresa;
+        this.nombre = nombre;
+        this.nit = nit;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.creacionAt = creacionAt;
+        this.actualizacionAt = actualizacionAt;
+    }
+
+    public long getId_empresa() {
+        return id_empresa;
+    }
+
+    public void setId_empresa(long id_empresa) {
+        this.id_empresa = id_empresa;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -25,12 +53,12 @@ public class Empresa {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getNit() {
+        return nit;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setNit(String nit) {
+        this.nit = nit;
     }
 
     public String getTelefono() {
@@ -41,11 +69,40 @@ public class Empresa {
         this.telefono = telefono;
     }
 
-    public String getNit() {
-        return nit;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setNit(String nit) {
-        this.nit = nit;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Calendar getCreacionAt() {
+        return creacionAt;
+    }
+
+    public void setCreacionAt(Calendar creacionAt) {
+        this.creacionAt = creacionAt;
+    }
+
+    public Calendar getActualizacionAt() {
+        return actualizacionAt;
+    }
+
+    public void setActualizacionAt(Calendar actualizacionAt) {
+        this.actualizacionAt = actualizacionAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa{" +
+                "id_empresa=" + id_empresa +
+                ", nombre='" + nombre + '\'' +
+                ", nit='" + nit + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", creacionAt=" + creacionAt +
+                ", actualizacionAt=" + actualizacionAt +
+                '}';
     }
 }

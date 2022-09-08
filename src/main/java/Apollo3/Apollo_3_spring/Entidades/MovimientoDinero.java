@@ -1,44 +1,110 @@
 package Apollo3.Apollo_3_spring.Entidades;
 
+import javax.persistence.*;
+import java.util.Calendar;
+
+@Entity
+@Table(name = "Movimiento_Dinero")
 public class MovimientoDinero {
-    //Instanciar atributos
-    private float monto;
+    //Instancio atributos
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id_movimiento;
+    @Column(length = 50, nullable = false)
     private String concepto;
-    private String usuario;
-    private String empresa;
+    @Column(nullable = false)
+    private float monto;
+    @ManyToOne
+    @JoinColumn(name = "id_empleado")
+    private Empleado empleado;
+    @ManyToOne
+    @JoinColumn(name = "id_empresa")
+    private Empresa empresa;
+    @Column(nullable = false)
+    private Calendar creacionAt;
+    @Column
+    private Calendar actualizacionAt;
 
-    //Método Constructor
-
-    public MovimientoDinero(float monto, String concepto, String usuario, String empresa) {
-        this.monto = monto;
-        this.concepto = concepto;
-        this.usuario = usuario;
-        this.empresa = empresa;
+    public MovimientoDinero() {
     }
-    // Getter and Setter
+
+    public MovimientoDinero(long id_movimiento, String concepto, float monto, Empleado empleado, Empresa empresa, Calendar creacionAt, Calendar actualizacionAt) {
+        this.id_movimiento = id_movimiento;
+        this.concepto = concepto;
+        this.monto = monto;
+        this.empleado = empleado;
+        this.empresa = empresa;
+        this.creacionAt = creacionAt;
+        this.actualizacionAt = actualizacionAt;
+    }
+
+    public long getId_movimiento() {
+        return id_movimiento;
+    }
+
+    public void setId_movimiento(long id_movimiento) {
+        this.id_movimiento = id_movimiento;
+    }
+
+    public String getConcepto() {
+        return concepto;
+    }
+
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
+    }
 
     public float getMonto() {
         return monto;
     }
+
     public void setMonto(float monto) {
         this.monto = monto;
     }
-    public String getConcepto() {
-        return concepto;
+
+    public Empleado getEmpleado() {
+        return empleado;
     }
-    public void setConcepto(String concepto) {
-        this.concepto = concepto;
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
-    public String getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-    public String getEmpresa() {
+
+    public Empresa getEmpresa() {
         return empresa;
     }
-    public void setEmpresa(String empresa) {
+
+    public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+    }
+
+    public Calendar getCreacionAt() {
+        return creacionAt;
+    }
+
+    public void setCreacionAt(Calendar creacionAt) {
+        this.creacionAt = creacionAt;
+    }
+
+    public Calendar getActualizacionAt() {
+        return actualizacionAt;
+    }
+
+    public void setActualizacionAt(Calendar actualizacionAt) {
+        this.actualizacionAt = actualizacionAt;
+    }
+
+    @Override
+    public String toString() {
+        return "MovimientoDinero{" +
+                "id_movimiento=" + id_movimiento +
+                ", concepto='" + concepto + '\'' +
+                ", monto=" + monto +
+                ", empleado=" + empleado +
+                ", empresa=" + empresa +
+                ", creacionAt=" + creacionAt +
+                ", actualizacionAt=" + actualizacionAt +
+                '}';
     }
 }
