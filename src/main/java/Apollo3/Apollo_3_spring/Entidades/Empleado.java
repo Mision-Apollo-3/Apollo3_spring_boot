@@ -1,9 +1,8 @@
 package Apollo3.Apollo_3_spring.Entidades;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Entity
 @Table
@@ -12,112 +11,103 @@ public class Empleado {
     //Creo los atributos
 
     @Id
-    @Column(unique=true, length =30)
-    private int ID;
-    @Column(nullable=false, length=50)
-    private String correo;
-    @Column(nullable=false, length=50)
-    private String perfil;
-    @Column(nullable=false, length=50)
-    private String funcion;
-    @Column(nullable=false, length=50)
-    private String empresa;
-    @Column(nullable=false, length=50)
-    private String transacciones;
-    @Column(nullable=false, length=50)
-    private String actualizar;
-    @Column(nullable=false, length=50)
-    private String crear;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    private String email;
+    private long perfilId;
+    private long funcionId;
+    private long empresa;
+    private ArrayList<Long> transaccion;
+    private Date actualizado;
+    private Date creado;
 
     //Constructor
-
-
-    public Empleado(int ID, String correo, String perfil, String funcion, String empresa, String transacciones, String actualizar, String crear) {
-        this.ID = ID;
-        this.correo = correo;
-        this.perfil = perfil;
-        this.funcion = funcion;
+    public Empleado(long id, String email, long perfilId, long funcionId, long empresa, ArrayList<Long> transaccion, Date actualizado, Date creado) {
+        this.id = id;
+        this.email = email;
+        this.perfilId = perfilId;
+        this.funcionId = funcionId;
         this.empresa = empresa;
-        this.transacciones = transacciones;
-        this.actualizar = actualizar;
-        this.crear = crear;
+        this.transaccion = transaccion;
+        this.actualizado = actualizado;
+        this.creado = creado;
     }
 
-    public String getID() {
-        return String.valueOf(ID);
+    public long getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPerfil() {
-        return perfil;
+    public long getPerfilId() {
+        return perfilId;
     }
 
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
+    public void setPerfilId(long perfilId) {
+        this.perfilId = perfilId;
     }
 
-    public String getFuncion() {
-        return funcion;
+    public long getFuncionId() {
+        return funcionId;
     }
 
-    public void setFuncion(String funcion) {
-        this.funcion = funcion;
+    public void setFuncionId(long funcionId) {
+        this.funcionId = funcionId;
     }
 
-    public String getEmpresa() {
+    public long getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(String empresa) {
+    public void setEmpresa(long empresa) {
         this.empresa = empresa;
     }
 
-    public String getTransacciones() {
-        return transacciones;
+    public ArrayList<Long> getTransaccion() {
+        return transaccion;
     }
 
-    public void setTransacciones(String transacciones) {
-        this.transacciones = transacciones;
+    public void setTransaccion(ArrayList<Long> transaccion) {
+        this.transaccion = transaccion;
     }
 
-    public String getActualizar() {
-        return actualizar;
+    public Date getActualizado() {
+        return actualizado;
     }
 
-    public void setActualizar(String actualizar) {
-        this.actualizar = actualizar;
+    public void setActualizado(Date actualizado) {
+        this.actualizado = actualizado;
     }
 
-    public String getCrear() {
-        return crear;
+    public Date getCreado() {
+        return creado;
     }
 
-    public void setCrear(String crear) {
-        this.crear = crear;
+    public void setCreado(Date creado) {
+        this.creado = creado;
     }
 
     @Override
     public String toString() {
         return "Empleado{" +
-                "ID=" + ID +
-                ", correo='" + correo + '\'' +
-                ", perfil='" + perfil + '\'' +
-                ", funcion='" + funcion + '\'' +
-                ", empresa='" + empresa + '\'' +
-                ", transacciones='" + transacciones + '\'' +
-                ", actualizar='" + actualizar + '\'' +
-                ", crear='" + crear + '\'' +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", perfilId=" + perfilId +
+                ", funcionId=" + funcionId +
+                ", empresa=" + empresa +
+                ", transaccion=" + transaccion +
+                ", actualizado=" + actualizado +
+                ", creado=" + creado +
                 '}';
     }
 }

@@ -22,7 +22,7 @@ public class EmpleadoControlador {
 
     @GetMapping("/BuscarEmpleado/{id}")
     public Optional<Empleado> buscarEmpleado(@PathVariable("id") String isbn) {
-        return servicio.buscarEmpleado(isbn);
+        return servicio.buscarEmpleado(Long.parseLong(isbn));
     }
 
     @GetMapping("/BuscarID/{ID}")

@@ -16,9 +16,9 @@ public class EmpleadoServicio {
         return (ArrayList<Empleado>) repositorio.findAll();
     }
 
-    public Optional<Empleado> buscarEmpleado(String ID) {
+    public Optional<Empleado> buscarEmpleado(long ID) {
 
-        return repositorio.findById(ID);
+        return repositorio.findById(String.valueOf(ID));
     }
 
     public ArrayList<Empleado> buscarID(String ID) {
@@ -26,7 +26,7 @@ public class EmpleadoServicio {
     }
 
     public String agregarEmpleado(Empleado Empleado) {
-        if (!buscarEmpleado(Empleado.getID()).isPresent()) {
+        if (!buscarEmpleado(Empleado.getId()).isPresent()) {
             repositorio.save(Empleado);
             return "Empleado Registrado exitosamente.";
         } else {
@@ -36,7 +36,7 @@ public class EmpleadoServicio {
 
 
     public String actualizarLibro(Empleado Empleado) {
-        if (buscarEmpleado(Empleado.getID()).isPresent()) {
+        if (buscarEmpleado(Empleado.getId()).isPresent()) {
             repositorio.save(Empleado);
             return "Empleado actualizado exitosamente";
         } else {
@@ -45,7 +45,7 @@ public class EmpleadoServicio {
     }
 
     public String actualizarEmpleado(Empleado Empleado) {
-        if (buscarEmpleado(Empleado.getID()).isPresent()) {
+        if (buscarEmpleado(Empleado.getId()).isPresent()) {
             repositorio.save(Empleado);
             return "Empleado Actualizado Exitosamente";
         } else {
@@ -54,9 +54,9 @@ public class EmpleadoServicio {
     }
 
     public String actualizarPerfil(String ID, String perfil) {
-        if (buscarEmpleado(ID).isPresent()) {
+        if (buscarEmpleado (Long.parseLong(ID)).isPresent()) {
             Empleado empleado1 = repositorio.findById(ID).get();
-            empleado1.setPerfil(perfil);
+            empleado1.setPerfilId(Long.parseLong(perfil));
             repositorio.save(empleado1);
             return "Empleado actualizado";
         } else {
@@ -65,7 +65,7 @@ public class EmpleadoServicio {
     }
 
         public String eliminarEmpleado(String ID){
-            if(buscarEmpleado(ID).isPresent()) {
+            if(buscarEmpleado(Long.parseLong(ID)).isPresent()) {
                 repositorio.deleteById(ID);
                 return "Empleado Eliminado";
             } else {
