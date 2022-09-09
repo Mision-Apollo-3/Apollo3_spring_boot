@@ -22,9 +22,18 @@ public class ControladorEmpresa {
     public Optional<Empresa> BuscarEmpresa (@PathVariable ("id_empresa") String id_empresa){
         return servicio.BuscarEmpresa(id_empresa);
     }
-    @PatchMapping("/AgregarEmpresa")
+    @PostMapping("/AgregarEmpresa")
     public String AgregarEmpresa(@RequestBody Empresa Empresa_1){
            return servicio.agregarEmpresa(Empresa_1);
+    }
+    @PutMapping ("ActualizaEmpresa}")
+    public String ActualizarEmpresa (@RequestBody Empresa Empresa_1){
+       return servicio.ActualizarEmpresa(Empresa_1);
+    }
+    @DeleteMapping("ElminarEmpresa/{id_empresa}")
+    public String EliminarEmpresa(@PathVariable ("id_empresa") Long id_empresa){
+        return servicio.EliminarEmpresa(id_empresa);
+
     }
 
 }

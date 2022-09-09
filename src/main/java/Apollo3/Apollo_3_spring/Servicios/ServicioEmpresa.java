@@ -20,15 +20,31 @@ private EmpresaRepositorio repositorioEmpresa;
     public Optional<Empresa> BuscarEmpresa(String id_empresa){
         return repositorioEmpresa.findById(id_empresa);
     }
-    public   String agregarEmpresa( Empresa Empresa_1){
-       String EMP= Long.toString(Empresa_1.getId_empresa());
-        if(!BuscarEmpresa(EMP).isPresent()){
+    public   String agregarEmpresa( Empresa Empresa_1) {
+        String EMP = Long.toString(Empresa_1.getId_empresa());
+        if (!BuscarEmpresa(EMP).isPresent()) {
             repositorioEmpresa.save(Empresa_1);
             return "Se agrego empresa";
-        }else {
+        } else {
             return "No se agrego empresa";
         }
+    }
+    public String ActualizarEmpresa (Empresa Empresa_1) {
+        String EMP = Long.toString(Empresa_1.getId_empresa());
+        if(BuscarEmpresa(EMP).isPresent()){
+           repositorioEmpresa.save(Empresa_1);
+            return  "Empresa  actualizado";
+        }else{
+            return "La empresa que quiere actualizar no existe";
+        }
+    }
+    public String EliminarEmpresa(long id_empresa){
 
-
+        if(BuscarEmpresa(String.valueOf(id_empresa)).isPresent()){
+            repositorioEmpresa.deleteById(String.valueOf((id_empresa)));
+            return "Se elimino Empresa";
+        }else{
+            return " La empresa a eliminar no existe ";
+        }
     }
 }
