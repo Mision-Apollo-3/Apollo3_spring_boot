@@ -26,7 +26,7 @@ public class ControladorEmpresa {
     public String AgregarEmpresa(@RequestBody Empresa Empresa_1){
            return servicio.agregarEmpresa(Empresa_1);
     }
-    @PutMapping ("ActualizaEmpresa}")
+    @PutMapping ("ActualizaEmpresa")
     public String ActualizarEmpresa (@RequestBody Empresa Empresa_1){
        return servicio.ActualizarEmpresa(Empresa_1);
     }
