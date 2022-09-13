@@ -1,35 +1,41 @@
 package Apollo3.Apollo_3_spring.Entidades;
 
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Table(name = "Movimiento_Dinero")
 public class MovimientoDinero {
     //Instancio atributos
     @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_movimiento;
     @Column(length = 50, nullable = false)
     private String concepto;
     @Column(nullable = false)
     private float monto;
-    @ManyToOne
-    @JoinColumn(name = "id_empleado")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", nullable = false)
     private Empleado empleado;
-    @ManyToOne
-    @JoinColumn(name = "id_empresa")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa", nullable = false)
     private Empresa empresa;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Calendar creacionAt;
-    @Column
-    private Calendar actualizacionAt;
+    private Date creacionAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date actualizacionAt;
+
+    @PrePersist
+    public void prePersist(){
+        this.creacionAt = new Date();
+    }
 
     public MovimientoDinero() {
     }
 
-    public MovimientoDinero(long id_movimiento, String concepto, float monto, Empleado empleado, Empresa empresa, Calendar creacionAt, Calendar actualizacionAt) {
+    public MovimientoDinero(long id_movimiento, String concepto, float monto, Empleado empleado, Empresa empresa, Date creacionAt, Date actualizacionAt) {
         this.id_movimiento = id_movimiento;
         this.concepto = concepto;
         this.monto = monto;
@@ -79,19 +85,19 @@ public class MovimientoDinero {
         this.empresa = empresa;
     }
 
-    public Calendar getCreacionAt() {
+    public Date getCreacionAt() {
         return creacionAt;
     }
 
-    public void setCreacionAt(Calendar creacionAt) {
+    public void setCreacionAt(Date creacionAt) {
         this.creacionAt = creacionAt;
     }
 
-    public Calendar getActualizacionAt() {
+    public Date getActualizacionAt() {
         return actualizacionAt;
     }
 
-    public void setActualizacionAt(Calendar actualizacionAt) {
+    public void setActualizacionAt(Date actualizacionAt) {
         this.actualizacionAt = actualizacionAt;
     }
 

@@ -1,31 +1,37 @@
 package Apollo3.Apollo_3_spring.Entidades;
 
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Table(name = "Perfil")
 public class Perfil {
 
     @Id
-    @Column
+    @Column(unique = true, length = 30)
     private String id_perfil;
     @Column(length = 50)
     private String imagen;
     @Column(length = 50)
     private String telefono;
     @OneToOne
-    @JoinColumn(name = "id_empleado")
+    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", nullable = false)
     private Empleado empleado;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Calendar creacionAt;
-    @Column
-    private Calendar actualizacionAt;
+    private Date creacionAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date actualizacionAt;
+
+    @PrePersist
+    public void prePersist(){
+        this.creacionAt = new Date();
+    }
 
     public Perfil() {
     }
 
-    public Perfil(String id_perfil, String imagen, String telefono, Empleado empleado, Calendar creacionAt, Calendar actualizacionAt) {
+    public Perfil(String id_perfil, String imagen, String telefono, Empleado empleado, Date creacionAt, Date actualizacionAt) {
         this.id_perfil = id_perfil;
         this.imagen = imagen;
         this.telefono = telefono;
@@ -66,19 +72,19 @@ public class Perfil {
         this.empleado = empleado;
     }
 
-    public Calendar getCreacionAt() {
+    public Date getCreacionAt() {
         return creacionAt;
     }
 
-    public void setCreacionAt(Calendar creacionAt) {
+    public void setCreacionAt(Date creacionAt) {
         this.creacionAt = creacionAt;
     }
 
-    public Calendar getActualizacionAt() {
+    public Date getActualizacionAt() {
         return actualizacionAt;
     }
 
-    public void setActualizacionAt(Calendar actualizacionAt) {
+    public void setActualizacionAt(Date actualizacionAt) {
         this.actualizacionAt = actualizacionAt;
     }
 }

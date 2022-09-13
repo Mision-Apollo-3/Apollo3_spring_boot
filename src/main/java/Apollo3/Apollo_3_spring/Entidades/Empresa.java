@@ -1,15 +1,16 @@
 package Apollo3.Apollo_3_spring.Entidades;
 
 import javax.persistence.*;
-import java.util.Calendar;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Empresa")
 public class Empresa {
 
     @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_empresa;
     @Column(unique = true, length = 50, nullable = false)
     private String nombre;
@@ -19,15 +20,27 @@ public class Empresa {
     private String telefono;
     @Column(length = 50, nullable = false)
     private String direccion;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Calendar creacionAt;
-    @Column
-    private Calendar actualizacionAt;
+    private Date creacionAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date actualizacionAt;
+
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Empleado> empleados;
+
+    @OneToMany(mappedBy = "movimientoDinero", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<MovimientoDinero> movimientoDineros;
+
+    @PrePersist
+    public void prePersist(){
+        this.creacionAt = new Date();
+    }
 
     public Empresa() {
     }
 
-    public Empresa(long id_empresa, String nombre, String nit, String telefono, String direccion, Calendar creacionAt, Calendar actualizacionAt) {
+    public Empresa(long id_empresa, String nombre, String nit, String telefono, String direccion, Date creacionAt, Date actualizacionAt) {
         this.id_empresa = id_empresa;
         this.nombre = nombre;
         this.nit = nit;
@@ -77,19 +90,19 @@ public class Empresa {
         this.direccion = direccion;
     }
 
-    public Calendar getCreacionAt() {
+    public Date getCreacionAt() {
         return creacionAt;
     }
 
-    public void setCreacionAt(Calendar creacionAt) {
+    public void setCreacionAt(Date creacionAt) {
         this.creacionAt = creacionAt;
     }
 
-    public Calendar getActualizacionAt() {
+    public Date getActualizacionAt() {
         return actualizacionAt;
     }
 
-    public void setActualizacionAt(Calendar actualizacionAt) {
+    public void setActualizacionAt(Date actualizacionAt) {
         this.actualizacionAt = actualizacionAt;
     }
 
