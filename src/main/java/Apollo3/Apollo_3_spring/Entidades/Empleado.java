@@ -1,10 +1,7 @@
 package Apollo3.Apollo_3_spring.Entidades;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.Calendar;
 
 @Entity
 @Table(name = "Empleado")
@@ -12,40 +9,30 @@ public class Empleado {
 
     //Creo los atributos
     @Id
-    @Column(unique = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_empleado;
     @Column(length = 50, nullable = false)
     private String nombre;
     @Column(length = 50, nullable = false)
     private String correo;
     @OneToOne
-    @JoinColumn(name = "id_perfil", referencedColumnName = "id_perfil", unique = true)
+    @JoinColumn(name = "id_perfil")
     private Perfil perfil;
     @Column(length = 20, nullable = false)
     private String rol;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa", nullable = false)
-    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "id_empresa")
     private Empresa empresa;
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Date creacionAt;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date actualizacionAt;
-
-    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<MovimientoDinero> movimientoDineros;
-
-    @PrePersist
-    public void prePersist(){
-        this.creacionAt = new Date();
-    }
+    private Calendar creacionAt;
+    @Column
+    private Calendar actualizacionAt;
 
     public Empleado() {
     }
 
-    public Empleado(long id_empleado, String nombre, String correo, Perfil perfil, String rol, Empresa empresa, Date creacionAt, Date actualizacionAt) {
+    public Empleado(long id_empleado, String nombre, String correo, Perfil perfil, String rol, Empresa empresa, Calendar creacionAt, Calendar actualizacionAt) {
         this.id_empleado = id_empleado;
         this.nombre = nombre;
         this.correo = correo;
@@ -104,19 +91,19 @@ public class Empleado {
         this.empresa = empresa;
     }
 
-    public Date getCreacionAt() {
+    public Calendar getCreacionAt() {
         return creacionAt;
     }
 
-    public void setCreacionAt(Date creacionAt) {
+    public void setCreacionAt(Calendar creacionAt) {
         this.creacionAt = creacionAt;
     }
 
-    public Date getActualizacionAt() {
+    public Calendar getActualizacionAt() {
         return actualizacionAt;
     }
 
-    public void setActualizacionAt(Date actualizacionAt) {
+    public void setActualizacionAt(Calendar actualizacionAt) {
         this.actualizacionAt = actualizacionAt;
     }
 
