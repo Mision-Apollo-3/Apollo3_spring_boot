@@ -2,6 +2,7 @@ package Apollo3.Apollo_3_spring.Entidades;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Perfil")
@@ -14,14 +15,14 @@ public class Perfil {
     private String imagen;
     @Column(length = 50)
     private String telefono;
-    @OneToOne
-    @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado", nullable = false)
-    private Empleado empleado;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date creacionAt;
     @Temporal(TemporalType.TIMESTAMP)
     private Date actualizacionAt;
+
+    @OneToMany(mappedBy = "perfil", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Empleado> empleados;
 
     @PrePersist
     public void prePersist(){
@@ -31,11 +32,10 @@ public class Perfil {
     public Perfil() {
     }
 
-    public Perfil(String id_perfil, String imagen, String telefono, Empleado empleado, Date creacionAt, Date actualizacionAt) {
+    public Perfil(String id_perfil, String imagen, String telefono, Date creacionAt, Date actualizacionAt) {
         this.id_perfil = id_perfil;
         this.imagen = imagen;
         this.telefono = telefono;
-        this.empleado = empleado;
         this.creacionAt = creacionAt;
         this.actualizacionAt = actualizacionAt;
     }
@@ -62,14 +62,6 @@ public class Perfil {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
     }
 
     public Date getCreacionAt() {

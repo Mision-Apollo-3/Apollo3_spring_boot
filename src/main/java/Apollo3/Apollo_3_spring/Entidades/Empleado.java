@@ -1,7 +1,10 @@
 package Apollo3.Apollo_3_spring.Entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Empleado")
@@ -17,18 +20,22 @@ public class Empleado {
     @Column(length = 50, nullable = false)
     private String correo;
     @OneToOne
-    @JoinColumn(name = "id_perfil", referencedColumnName = "id_perfil", nullable = false)
+    @JoinColumn(name = "id_perfil", referencedColumnName = "id_perfil", unique = true)
     private Perfil perfil;
     @Column(length = 20, nullable = false)
     private String rol;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_empresa", referencedColumnName = "id_empresa", nullable = false)
+    @JsonIgnore
     private Empresa empresa;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date creacionAt;
     @Temporal(TemporalType.TIMESTAMP)
     private Date actualizacionAt;
+
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<MovimientoDinero> movimientoDineros;
 
     @PrePersist
     public void prePersist(){

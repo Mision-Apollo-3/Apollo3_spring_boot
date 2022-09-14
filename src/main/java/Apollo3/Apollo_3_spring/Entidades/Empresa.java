@@ -26,10 +26,10 @@ public class Empresa {
     @Temporal(TemporalType.TIMESTAMP)
     private Date actualizacionAt;
 
-    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<Empleado> empleados;
 
-    @OneToMany(mappedBy = "movimientoDinero", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<MovimientoDinero> movimientoDineros;
 
     @PrePersist
