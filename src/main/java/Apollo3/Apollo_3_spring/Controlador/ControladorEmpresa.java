@@ -16,15 +16,14 @@ public class ControladorEmpresa {
     }
     @GetMapping("/ListarEmpresa")
     public ArrayList<Empresa> ConsultarEmpresa (){
-        return  servicio.ConsultarEmpresa();
-    }
+        return  servicio.ConsultarEmpresa();}
     @GetMapping("/BuscarEmpresa/{id_empresa}")
     public Optional<Empresa> BuscarEmpresa (@PathVariable ("id_empresa") String id_empresa){
         return servicio.BuscarEmpresa(id_empresa);
     }
     @PostMapping("/AgregarEmpresa")
     public String AgregarEmpresa(@RequestBody Empresa Empresa_1){
-           return servicio.agregarEmpresa(Empresa_1);
+        return servicio.agregarEmpresa(Empresa_1);
     }
     @PutMapping ("ActualizaEmpresa")
     public String ActualizarEmpresa (@RequestBody Empresa Empresa_1){

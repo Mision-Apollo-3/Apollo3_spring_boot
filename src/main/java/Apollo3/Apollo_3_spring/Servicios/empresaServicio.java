@@ -1,7 +1,7 @@
 package Apollo3.Apollo_3_spring.Servicios;
 
 import Apollo3.Apollo_3_spring.Entidades.Empresa;
-import Apollo3.Apollo_3_spring.Repositorio.empresaRepositorio;
+import Apollo3.Apollo_3_spring.Repositorio.EmpresaRepositorio;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,9 +10,9 @@ import java.util.Optional;
 @Service
 public class empresaServicio {
 
-    private empresaRepositorio repositorio;
+    private EmpresaRepositorio repositorio;
 
-    public empresaServicio(empresaRepositorio repositorio) {
+    public empresaServicio(EmpresaRepositorio repositorio) {
         this.repositorio = repositorio;
     }
 
@@ -21,7 +21,7 @@ public class empresaServicio {
     }
 
     public Optional<Empresa> buscarEmpresa(long id_empresa){
-        return repositorio.findById(id_empresa);
+        return repositorio.findById(String.valueOf(id_empresa));
     }
 
     public String agregarEmpresa(Empresa empresa){
