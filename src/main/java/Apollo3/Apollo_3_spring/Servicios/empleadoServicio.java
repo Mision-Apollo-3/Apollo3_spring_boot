@@ -1,6 +1,7 @@
 package Apollo3.Apollo_3_spring.Servicios;
 
 import Apollo3.Apollo_3_spring.Entidades.Empleado;
+import Apollo3.Apollo_3_spring.Repositorio.EmpresaRepositorio;
 import Apollo3.Apollo_3_spring.Repositorio.empleadoRepositorio;
 import Apollo3.Apollo_3_spring.Repositorio.EmpresaRepositorio;
 import org.springframework.stereotype.Service;
