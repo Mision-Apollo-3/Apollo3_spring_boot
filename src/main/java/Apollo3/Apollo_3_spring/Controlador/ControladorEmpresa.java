@@ -25,11 +25,11 @@ public class ControladorEmpresa {
     public String AgregarEmpresa(@RequestBody Empresa Empresa_1){
         return servicio.agregarEmpresa(Empresa_1);
     }
-    @PutMapping ("ActualizaEmpresa")
+    @PutMapping ("/ActualizaEmpresa")
     public String ActualizarEmpresa (@RequestBody Empresa Empresa_1){
        return servicio.ActualizarEmpresa(Empresa_1);
     }
-    @DeleteMapping("ElminarEmpresa/{id_empresa}")
+    @DeleteMapping("/ElminarEmpresa/{id_empresa}")
     public String EliminarEmpresa(@PathVariable ("id_empresa") Long id_empresa){
         return servicio.EliminarEmpresa(id_empresa);
 

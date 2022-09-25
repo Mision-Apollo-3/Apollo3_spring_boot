@@ -28,11 +28,11 @@ public class ControladorMovimientoDinero {
     public String agregarMD(@RequestBody MovimientoDinero MD_1){
         return servicioDM.agregarMD(MD_1);
     }
-    @PutMapping ("ActualizarMD")
+    @PutMapping ("/ActualizarMD")
     public String ActualizarMD (@RequestBody MovimientoDinero MD_1){
         return servicioDM.ActualizarMD(MD_1);
     }
-    @DeleteMapping("EliminarMD/{id_movimiento}")
+    @DeleteMapping("/EliminarMD/{id_movimiento}")
     public String EliminarMD(@PathVariable ("id_movimiento") Long id_movimiento){
         return servicioDM.EliminarMD(id_movimiento);
 
