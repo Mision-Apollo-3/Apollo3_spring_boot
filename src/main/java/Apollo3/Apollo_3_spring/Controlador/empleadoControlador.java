@@ -3,7 +3,7 @@ package Apollo3.Apollo_3_spring.Controlador;
 import Apollo3.Apollo_3_spring.Entidades.Empleado;
 import Apollo3.Apollo_3_spring.Entidades.Empresa;
 import Apollo3.Apollo_3_spring.Servicios.empleadoServicio;
-import Apollo3.Apollo_3_spring.Servicios.empresaServicio;
+import Apollo3.Apollo_3_spring.Servicios.ServicioEmpresa;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
