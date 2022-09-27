@@ -11,7 +11,7 @@ import java.util.Optional;
 @RestController
 public class ControladorMovimientoDinero {
 
-    private ServicioMovimientoDinero servicioDM;
+    public ServicioMovimientoDinero servicioDM;
 
     public ControladorMovimientoDinero(ServicioMovimientoDinero servicioDM) {
         this.servicioDM = servicioDM;

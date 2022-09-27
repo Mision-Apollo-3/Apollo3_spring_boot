@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RestController
 public class ControladorEmpresa {
-    private ServicioEmpresa servicio;
+    public ServicioEmpresa servicio;
 
     public ControladorEmpresa(ServicioEmpresa servicio) {
         this.servicio = servicio;

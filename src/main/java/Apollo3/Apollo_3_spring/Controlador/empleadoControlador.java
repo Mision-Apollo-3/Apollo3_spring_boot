@@ -1,18 +1,15 @@
 package Apollo3.Apollo_3_spring.Controlador;
 
 import Apollo3.Apollo_3_spring.Entidades.Empleado;
-import Apollo3.Apollo_3_spring.Entidades.Empresa;
 import Apollo3.Apollo_3_spring.Servicios.empleadoServicio;
-import Apollo3.Apollo_3_spring.Servicios.empresaServicio;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @RestController
 public class empleadoControlador {
 
-    private empleadoServicio servicio;
+    public empleadoServicio servicio;
 
     public empleadoControlador(empleadoServicio servicio) {
         this.servicio = servicio;
